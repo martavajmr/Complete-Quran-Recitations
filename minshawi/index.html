@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="theme-color" content="#167447">
+<title>Sheikh Muhammad Siddiq Al-Minshawi | Quran Recitation</title>
+<style>
+:root{--green:#167447;--pale:#eaf5ef;--ink:#17251d;--muted:#718078;--line:#e6ece8}
+*{box-sizing:border-box}body{margin:0;background:#f6f9f7;color:var(--ink);font:15px/1.45 Arial,sans-serif}
+header{background:linear-gradient(145deg,#0d5a35,#238653);color:#fff;padding:24px 18px 22px;border-radius:0 0 24px 24px}
+.top{display:flex;align-items:center;gap:15px;max-width:760px;margin:auto}
+.portrait{width:92px;height:92px;object-fit:cover;border-radius:18px;border:3px solid #ffffff80;box-shadow:0 5px 16px #00351e40}
+h1{font-size:20px;line-height:1.2;margin:0 0 7px}header p{margin:0;color:#e0f1e7;font-size:13px}
+main{max-width:760px;margin:18px auto 120px;padding:0 14px}
+.tools{display:flex;gap:9px;margin:14px 0 12px}
+input{min-width:0;flex:1;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:white;font-size:15px;outline:none}
+.filter{border:1px solid var(--line);background:#fff;border-radius:12px;padding:0 13px;color:var(--green);font-weight:700}
+.count{font-size:12px;color:var(--muted);margin:10px 3px}
+.list{display:grid;gap:8px}
+.surah{width:100%;display:flex;align-items:center;gap:12px;text-align:left;padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:white;color:var(--ink);cursor:pointer}
+.surah.active{border-color:#62a982;background:var(--pale)}
+.thumb{width:43px;height:43px;flex:none;border-radius:11px;overflow:hidden;background:#e4eee8}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.surahtext{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}.surahtext b{font-size:14px}.surahtext small{font-size:11px;color:var(--muted)}
+.playmark{color:var(--green);font-size:16px;padding:5px}
+.player{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);box-shadow:0 -5px 22px #153d2712;padding:12px max(14px,calc((100% - 732px)/2)) calc(12px + env(safe-area-inset-bottom));z-index:5}
+.now{display:flex;align-items:center;gap:10px;margin-bottom:7px}.now img{width:38px;height:38px;border-radius:9px;object-fit:cover}.nowtext{flex:1;min-width:0}.nowtext b{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.nowtext small{color:var(--muted);font-size:11px}
+.controls{display:flex;align-items:center;justify-content:center;gap:18px}.controls button{border:0;background:none;color:var(--green);font-size:20px;padding:5px 9px;cursor:pointer}.controls .mainplay{width:42px;height:42px;border-radius:50%;background:var(--green);color:white;font-size:17px}
+.seekrow{display:flex;align-items:center;gap:8px;font-size:10px;color:var(--muted)}input[type=range]{padding:0;accent-color:var(--green);height:18px}
+.modes{display:flex;justify-content:space-between;margin-top:4px}.modes button{border:0;background:none;color:var(--muted);font-size:11px;padding:4px}.modes button.on{color:var(--green);font-weight:bold}
+@media(min-width:600px){.list{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header><div class="top"><img class="portrait" src="reciter.jpg" alt="Sheikh Muhammad Siddiq Al-Minshawi"><div><h1>Sheikh Muhammad Siddiq Al-Minshawi</h1><p>Complete Quran Recitation · Surahs 001–100</p></div></div></header>
+<main>
+<div class="tools"><input id="search" type="search" placeholder="Search Surah..." aria-label="Search Surah"><button class="filter" id="favFilter">♡ Favourites</button></div>
+<div class="count" id="count">100 Surahs</div>
+<div class="list" id="list"><button class="surah" data-num="001" data-name="Al-Fatihah"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>001. Al-Fatihah</b><small>Surah 1</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="002" data-name="Al-Baqarah"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>002. Al-Baqarah</b><small>Surah 2</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="003" data-name="Aal-Imran"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>003. Aal-Imran</b><small>Surah 3</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="004" data-name="An-Nisa"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>004. An-Nisa</b><small>Surah 4</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="005" data-name="Al-Ma'idah"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>005. Al-Ma'idah</b><small>Surah 5</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="006" data-name="Al-An'am"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>006. Al-An'am</b><small>Surah 6</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="007" data-name="Al-A'raf"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>007. Al-A'raf</b><small>Surah 7</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="008" data-name="Al-Anfal"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>008. Al-Anfal</b><small>Surah 8</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="009" data-name="At-Tawbah"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>009. At-Tawbah</b><small>Surah 9</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="010" data-name="Yunus"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>010. Yunus</b><small>Surah 10</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="011" data-name="Hud"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>011. Hud</b><small>Surah 11</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="012" data-name="Yusuf"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>012. Yusuf</b><small>Surah 12</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="013" data-name="Ar-Ra'd"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>013. Ar-Ra'd</b><small>Surah 13</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="014" data-name="Ibrahim"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>014. Ibrahim</b><small>Surah 14</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="015" data-name="Al-Hijr"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>015. Al-Hijr</b><small>Surah 15</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="016" data-name="An-Nahl"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>016. An-Nahl</b><small>Surah 16</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="017" data-name="Al-Isra"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>017. Al-Isra</b><small>Surah 17</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="018" data-name="Al-Kahf"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>018. Al-Kahf</b><small>Surah 18</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="019" data-name="Maryam"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>019. Maryam</b><small>Surah 19</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="020" data-name="Ta-Ha"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>020. Ta-Ha</b><small>Surah 20</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="021" data-name="Al-Anbiya"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>021. Al-Anbiya</b><small>Surah 21</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="022" data-name="Al-Hajj"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>022. Al-Hajj</b><small>Surah 22</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="023" data-name="Al-Mu'minun"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>023. Al-Mu'minun</b><small>Surah 23</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="024" data-name="An-Nur"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>024. An-Nur</b><small>Surah 24</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="025" data-name="Al-Furqan"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>025. Al-Furqan</b><small>Surah 25</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="026" data-name="Ash-Shu'ara"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>026. Ash-Shu'ara</b><small>Surah 26</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="027" data-name="An-Naml"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>027. An-Naml</b><small>Surah 27</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="028" data-name="Al-Qasas"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>028. Al-Qasas</b><small>Surah 28</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="029" data-name="Al-Ankabut"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>029. Al-Ankabut</b><small>Surah 29</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="030" data-name="Ar-Rum"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>030. Ar-Rum</b><small>Surah 30</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="031" data-name="Luqman"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>031. Luqman</b><small>Surah 31</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="032" data-name="As-Sajdah"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>032. As-Sajdah</b><small>Surah 32</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="033" data-name="Al-Ahzab"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>033. Al-Ahzab</b><small>Surah 33</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="034" data-name="Saba"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>034. Saba</b><small>Surah 34</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="035" data-name="Fatir"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>035. Fatir</b><small>Surah 35</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="036" data-name="Ya-Sin"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>036. Ya-Sin</b><small>Surah 36</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="037" data-name="As-Saffat"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>037. As-Saffat</b><small>Surah 37</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="038" data-name="Sad"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>038. Sad</b><small>Surah 38</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="039" data-name="Az-Zumar"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>039. Az-Zumar</b><small>Surah 39</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="040" data-name="Ghafir"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>040. Ghafir</b><small>Surah 40</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="041" data-name="Fussilat"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>041. Fussilat</b><small>Surah 41</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="042" data-name="Ash-Shura"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>042. Ash-Shura</b><small>Surah 42</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="043" data-name="Az-Zukhruf"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>043. Az-Zukhruf</b><small>Surah 43</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="044" data-name="Ad-Dukhan"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>044. Ad-Dukhan</b><small>Surah 44</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="045" data-name="Al-Jathiyah"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>045. Al-Jathiyah</b><small>Surah 45</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="046" data-name="Al-Ahqaf"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>046. Al-Ahqaf</b><small>Surah 46</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="047" data-name="Muhammad"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>047. Muhammad</b><small>Surah 47</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="048" data-name="Al-Fath"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>048. Al-Fath</b><small>Surah 48</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="049" data-name="Al-Hujurat"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>049. Al-Hujurat</b><small>Surah 49</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="050" data-name="Qaf"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>050. Qaf</b><small>Surah 50</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="051" data-name="Adh-Dhariyat"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>051. Adh-Dhariyat</b><small>Surah 51</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="052" data-name="At-Tur"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>052. At-Tur</b><small>Surah 52</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="053" data-name="An-Najm"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>053. An-Najm</b><small>Surah 53</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="054" data-name="Al-Qamar"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>054. Al-Qamar</b><small>Surah 54</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="055" data-name="Ar-Rahman"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>055. Ar-Rahman</b><small>Surah 55</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="056" data-name="Al-Waqi'ah"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>056. Al-Waqi'ah</b><small>Surah 56</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="057" data-name="Al-Hadid"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>057. Al-Hadid</b><small>Surah 57</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="058" data-name="Al-Mujadilah"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>058. Al-Mujadilah</b><small>Surah 58</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="059" data-name="Al-Hashr"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>059. Al-Hashr</b><small>Surah 59</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="060" data-name="Al-Mumtahanah"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>060. Al-Mumtahanah</b><small>Surah 60</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="061" data-name="As-Saff"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>061. As-Saff</b><small>Surah 61</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="062" data-name="Al-Jumu'ah"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>062. Al-Jumu'ah</b><small>Surah 62</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="063" data-name="Al-Munafiqun"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>063. Al-Munafiqun</b><small>Surah 63</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="064" data-name="At-Taghabun"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>064. At-Taghabun</b><small>Surah 64</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="065" data-name="At-Talaq"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>065. At-Talaq</b><small>Surah 65</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="066" data-name="At-Tahrim"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>066. At-Tahrim</b><small>Surah 66</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="067" data-name="Al-Mulk"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>067. Al-Mulk</b><small>Surah 67</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="068" data-name="Al-Qalam"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>068. Al-Qalam</b><small>Surah 68</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="069" data-name="Al-Haqqah"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>069. Al-Haqqah</b><small>Surah 69</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="070" data-name="Al-Ma'arij"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>070. Al-Ma'arij</b><small>Surah 70</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="071" data-name="Nuh"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>071. Nuh</b><small>Surah 71</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="072" data-name="Al-Jinn"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>072. Al-Jinn</b><small>Surah 72</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="073" data-name="Al-Muzzammil"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>073. Al-Muzzammil</b><small>Surah 73</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="074" data-name="Al-Muddaththir"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>074. Al-Muddaththir</b><small>Surah 74</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="075" data-name="Al-Qiyamah"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>075. Al-Qiyamah</b><small>Surah 75</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="076" data-name="Al-Insan"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>076. Al-Insan</b><small>Surah 76</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="077" data-name="Al-Mursalat"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>077. Al-Mursalat</b><small>Surah 77</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="078" data-name="An-Naba"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>078. An-Naba</b><small>Surah 78</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="079" data-name="An-Nazi'at"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>079. An-Nazi'at</b><small>Surah 79</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="080" data-name="Abasa"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>080. Abasa</b><small>Surah 80</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="081" data-name="At-Takwir"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>081. At-Takwir</b><small>Surah 81</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="082" data-name="Al-Infitar"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>082. Al-Infitar</b><small>Surah 82</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="083" data-name="Al-Mutaffifin"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>083. Al-Mutaffifin</b><small>Surah 83</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="084" data-name="Al-Inshiqaq"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>084. Al-Inshiqaq</b><small>Surah 84</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="085" data-name="Al-Buruj"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>085. Al-Buruj</b><small>Surah 85</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="086" data-name="At-Tariq"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>086. At-Tariq</b><small>Surah 86</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="087" data-name="Al-A'la"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>087. Al-A'la</b><small>Surah 87</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="088" data-name="Al-Ghashiyah"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>088. Al-Ghashiyah</b><small>Surah 88</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="089" data-name="Al-Fajr"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>089. Al-Fajr</b><small>Surah 89</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="090" data-name="Al-Balad"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>090. Al-Balad</b><small>Surah 90</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="091" data-name="Ash-Shams"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>091. Ash-Shams</b><small>Surah 91</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="092" data-name="Al-Layl"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>092. Al-Layl</b><small>Surah 92</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="093" data-name="Ad-Duha"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>093. Ad-Duha</b><small>Surah 93</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="094" data-name="Ash-Sharh"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>094. Ash-Sharh</b><small>Surah 94</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="095" data-name="At-Tin"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>095. At-Tin</b><small>Surah 95</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="096" data-name="Al-Alaq"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>096. Al-Alaq</b><small>Surah 96</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="097" data-name="Al-Qadr"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>097. Al-Qadr</b><small>Surah 97</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="098" data-name="Al-Bayyinah"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>098. Al-Bayyinah</b><small>Surah 98</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="099" data-name="Az-Zalzalah"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>099. Az-Zalzalah</b><small>Surah 99</small></span><span class="playmark">▶</span></button>
+<button class="surah" data-num="100" data-name="Al-Adiyat"><span class="thumb"><img src="reciter.jpg" alt=""></span><span class="surahtext"><b>100. Al-Adiyat</b><small>Surah 100</small></span><span class="playmark">▶</span></button></div>
+</main>
+<section class="player" aria-label="Audio player">
+ <div class="now"><img src="reciter.jpg" alt=""><div class="nowtext"><b id="nowTitle">Choose a Surah to begin</b><small id="status">Sheikh Muhammad Siddiq Al-Minshawi</small></div></div>
+ <div class="seekrow"><span id="current">0:00</span><input id="seek" type="range" min="0" max="1000" value="0"><span id="duration">0:00</span></div>
+ <div class="controls"><button id="prev" aria-label="Previous Surah">⏮</button><button class="mainplay" id="play" aria-label="Play or pause">▶</button><button id="next" aria-label="Next Surah">⏭</button></div>
+ <div class="modes"><button id="repeat">↻ Repeat: Off</button><button id="fav">♡ Add favourite</button><button id="minimize">Hide player</button></div>
+</section>
+<audio id="audio" preload="none"></audio>
+<script>
+const BASE='https://cdn.jsdelivr.net/gh/martavajmr/minshawi@main/';
+const audio=document.getElementById('audio'), list=document.getElementById('list');
+const rows=[...document.querySelectorAll('.surah')];
+let currentIndex=-1, repeatMode=0, favOnly=false, minimized=false;
+let favourites=JSON.parse(localStorage.getItem('minshawi_favs')||'[]');
+let recent=JSON.parse(localStorage.getItem('minshawi_recent')||'[]');
+const fmt=s=>{if(!Number.isFinite(s))return '0:00';let m=Math.floor(s/60),r=Math.floor(s%60);return m+':'+String(r).padStart(2,'0')};
+function updateFavButton(){document.getElementById('fav').textContent=currentIndex<0?'♡ Add favourite':(favourites.includes(rows[currentIndex].dataset.num)?'♥ Remove favourite':'♡ Add favourite')}
+function select(i,autoplay=true){if(i<0||i>=rows.length)return;currentIndex=i;const row=rows[i],num=row.dataset.num;audio.src=BASE+num+'.mp3';document.getElementById('nowTitle').textContent=num+'. '+row.dataset.name;document.getElementById('status').textContent='Sheikh Muhammad Siddiq Al-Minshawi';rows.forEach((r,j)=>r.classList.toggle('active',j===i));recent=[num,...recent.filter(x=>x!==num)].slice(0,12);localStorage.setItem('minshawi_recent',JSON.stringify(recent));updateFavButton();if(autoplay)audio.play().then(()=>document.getElementById('play').textContent='Ⅱ').catch(()=>document.getElementById('status').textContent='Tap play to start audio');}
+rows.forEach((r,i)=>r.addEventListener('click',()=>{if(i===currentIndex){if(audio.paused)audio.play();else audio.pause()}else select(i)}));
+document.getElementById('play').onclick=()=>{if(currentIndex<0)select(0);else if(audio.paused)audio.play();else audio.pause()};
+audio.onplay=()=>{document.getElementById('play').textContent='Ⅱ';document.getElementById('status').textContent='Now playing'};
+audio.onpause=()=>document.getElementById('play').textContent='▶';
+audio.ontimeupdate=()=>{if(audio.duration)document.getElementById('seek').value=audio.currentTime/audio.duration*1000;document.getElementById('current').textContent=fmt(audio.currentTime);document.getElementById('duration').textContent=fmt(audio.duration)};
+audio.onended=()=>{if(repeatMode===1){audio.currentTime=0;audio.play()}else if(currentIndex<rows.length-1)select(currentIndex+1);else if(repeatMode===2)select(0)};
+document.getElementById('seek').oninput=e=>{if(audio.duration)audio.currentTime=e.target.value/1000*audio.duration};
+document.getElementById('prev').onclick=()=>select(Math.max(0,currentIndex-1));
+document.getElementById('next').onclick=()=>select(Math.min(rows.length-1,currentIndex+1));
+document.getElementById('repeat').onclick=()=>{repeatMode=(repeatMode+1)%3;document.getElementById('repeat').textContent=['↻ Repeat: Off','↻ Repeat: One','↻ Repeat: All'][repeatMode];document.getElementById('repeat').classList.toggle('on',repeatMode!==0)};
+document.getElementById('fav').onclick=()=>{if(currentIndex<0)return;let n=rows[currentIndex].dataset.num;favourites=favourites.includes(n)?favourites.filter(x=>x!==n):[...favourites,n];localStorage.setItem('minshawi_favs',JSON.stringify(favourites));updateFavButton();render()};
+function render(){let q=document.getElementById('search').value.toLowerCase(),shown=0;rows.forEach(r=>{let ok=r.dataset.name.toLowerCase().includes(q)||r.dataset.num.includes(q);if(favOnly)ok=ok&&favourites.includes(r.dataset.num);r.style.display=ok?'flex':'none';if(ok)shown++});document.getElementById('count').textContent=shown+' Surahs'}
+document.getElementById('search').oninput=render;
+document.getElementById('favFilter').onclick=()=>{favOnly=!favOnly;document.getElementById('favFilter').textContent=favOnly?'♥ Favourites':'♡ Favourites';document.getElementById('favFilter').style.background=favOnly?'#eaf5ef':'#fff';render()};
+document.getElementById('minimize').onclick=()=>{document.querySelector('.player').style.display='none';minimized=true;let b=document.getElementById('restorePlayer');if(!b){b=document.createElement('button');b.id='restorePlayer';b.textContent='♫ Show player';b.style='position:fixed;bottom:12px;right:12px;z-index:8;background:#167447;color:white;border:0;border-radius:22px;padding:12px 16px';document.body.appendChild(b);b.onclick=()=>{document.querySelector('.player').style.display='block';b.remove();minimized=false}}};
+history.pushState({page:'surah-list'},'','#surahs');
+window.addEventListener('popstate',()=>{if(!minimized){document.querySelector('.player').style.display='none';minimized=true}});
+</script>
+</body></html>
